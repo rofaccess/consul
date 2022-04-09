@@ -366,6 +366,17 @@ describe "Consul Schema" do
       expect(received_comments).not_to include(not_public_poll_comment.body)
     end
 
+    it "only links public comments" do
+      user = create(:administrator).user
+      create(:comment, author: user, body: "Public")
+      create(:budget_investment_comment, author: user, valuation: true, body: "Valuation")
+
+      response = execute("{ user(id: #{user.id}) { public_comments { edges { node { body } } } } }")
+      received_comments = dig(response, "data.user.public_comments.edges")
+
+      expect(received_comments).to eq [{ "node" => { "body" => "Public" }}]
+    end
+
     it "only returns date and hour for created_at" do
       created_at = Time.zone.parse("2017-12-31 9:30:15")
       create(:comment, created_at: created_at)
