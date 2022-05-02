@@ -5,7 +5,6 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Confidential information
-/config/database.yml
 /config/secrets.yml
 /config/deploy-secrets.yml
 /config/maintenance.yml
@@ -27,7 +26,6 @@ tmp/
 
 # Bundler config, cache and gemsets
 .bundle/
-.ruby-gemset
 
 # Files used in local development
 .byebug_history
@@ -36,3 +34,6 @@ tmp/
 # Test results
 /spec/examples.txt
 /coverage/
+
+# Ignore RubyMine files
+/.idea/
