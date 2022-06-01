@@ -37,3 +37,7 @@ tmp/
 
 # Ignore RubyMine files
 /.idea/
+
+# Ignore liri folders
+/liri/
+/logs/
